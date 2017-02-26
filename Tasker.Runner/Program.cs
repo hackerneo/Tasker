@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Tasker.Runner
+﻿namespace Tasker.Runner
 {
+    using System;
+    using System.ComponentModel;
+    using System.Threading;
+    using Castle.Windsor;
+    using Core;
+
     class Program
     {
         static void Main(string[] args)
         {
+            var container = new WindsorContainer();
+            AppStarter.Start(container);
         }
     }
 }
