@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasker.Runner", "Tasker.Run
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasker.JobServer", "Tasker.JobServer\Tasker.JobServer.csproj", "{66267329-FE5D-4312-98FC-F0C280068105}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasker.MSSQLJobStorage", "Tasker.MSSQLJobStorage\Tasker.MSSQLJobStorage.csproj", "{B52127A3-292A-4EEC-9AED-84BAA96FB6A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{66267329-FE5D-4312-98FC-F0C280068105}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66267329-FE5D-4312-98FC-F0C280068105}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66267329-FE5D-4312-98FC-F0C280068105}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B52127A3-292A-4EEC-9AED-84BAA96FB6A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B52127A3-292A-4EEC-9AED-84BAA96FB6A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B52127A3-292A-4EEC-9AED-84BAA96FB6A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B52127A3-292A-4EEC-9AED-84BAA96FB6A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

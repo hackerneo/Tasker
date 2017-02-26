@@ -10,7 +10,7 @@
 
     public static class AppStarter
     {
-        public static void Start(WindsorContainer container)
+        public static void Init(WindsorContainer container)
         {
             InitIoC(container);
             InitModulesFolder();

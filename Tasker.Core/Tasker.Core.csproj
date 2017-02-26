@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppStarter.cs" />
+    <Compile Include="Interfaces\IJobServer.cs" />
     <Compile Include="Interfaces\IModule.cs" />
     <Compile Include="Interfaces\IModuleLoader.cs" />
     <Compile Include="Interfaces\IModuleProvider.cs" />
