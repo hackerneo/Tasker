@@ -1,2 +1,4 @@
 .vs/
 Tasker.Core/obj/
+*/obj/*
+*/bin/*
