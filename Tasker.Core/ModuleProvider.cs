@@ -27,27 +27,17 @@
 
             var result = new List<Assembly>();
 
-            this.UpdatePrivatePaths(shadowCopyFolder);
-
+            // * This will put the plugin assemblies in the 'Load' context
+            // This works but requires a 'probing' folder be defined in the web.config
             shadowCopyFolder
                 .GetFiles("*.dll", SearchOption.AllDirectories)
-                .Select(x => AssemblyName.GetAssemblyName(x.FullName))
+                .Select(x => x.FullName)
                 .ForEach(x =>
                 {
-                    Assembly.Load(x.FullName);
-                    result.Add(Assembly.Load(x.FullName));
+                    result.Add(Assembly.LoadFrom(x));
                 });
 
             this.assemblies = result.ToArray();
-        }
-
-        private void UpdatePrivatePaths(DirectoryInfo directory)
-        {
-            foreach (var dirInfo in directory.GetDirectories())
-            {
-                AppDomain.CurrentDomain.AppendPrivatePath(dirInfo.FullName);
-                this.UpdatePrivatePaths(dirInfo);
-            }
         }
     }
 }

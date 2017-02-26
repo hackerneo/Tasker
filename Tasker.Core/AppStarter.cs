@@ -17,7 +17,7 @@
             InitModules(container);
         }
 
-        private static void InitIoC(WindsorContainer container)
+        private static void InitIoC(IWindsorContainer container)
         {
             container.Register(Component.For<IWindsorContainer>().Instance(container));
             container.Register(Component.For<IModuleProvider>().ImplementedBy<ModuleProvider>().LifestyleTransient());
@@ -50,7 +50,7 @@
             CopyFolder(pluginFolder.FullName, shadowCopyFolder.FullName);
         }
 
-        private static void InitModules(WindsorContainer container)
+        private static void InitModules(IWindsorContainer container)
         {
             try
             {
@@ -67,12 +67,6 @@
             }
             catch (ReflectionTypeLoadException refex)
             {
-                foreach (var typeex in refex.LoaderExceptions)
-                {
-                    Debug.WriteLine(typeex.Message);
-                }
-
-                throw refex;
             }
         }
 

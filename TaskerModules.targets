@@ -1,0 +1,6 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Target Name="AfterBuild">
+	<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ProjectDir)..\Tasker.Runner\bin\modules\" Condition="Exists('$(TargetDir)$(TargetName).dll')" />
+	<Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(ProjectDir)..\Tasker.Runner\bin\modules\" Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
+</Target>
+</Project>
