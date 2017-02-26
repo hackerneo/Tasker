@@ -7,6 +7,7 @@
     using System.Reflection;
     using Castle.MicroKernel.Registration;
     using Castle.Windsor;
+    using Interfaces;
 
     public static class AppStarter
     {
@@ -15,6 +16,11 @@
             InitIoC(container);
             InitModulesFolder();
             InitModules(container);
+        }
+
+        public static void StartTasker(WindsorContainer container)
+        {
+            container.Resolve<IJobServer>().StartExecuting();
         }
 
         private static void InitIoC(IWindsorContainer container)

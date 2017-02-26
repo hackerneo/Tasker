@@ -48,8 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IJobStorage.cs" />
-    <Compile Include="Job.cs" />
     <Compile Include="JobServer.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,6 +56,10 @@
     <ProjectReference Include="..\Tasker.Core\Tasker.Core.csproj">
       <Project>{D90A9587-DF50-4BC8-861D-FC1DF61FE5A3}</Project>
       <Name>Tasker.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tasker.JobStorage\Tasker.JobStorage.csproj">
+      <Project>{2F7A4F4C-5961-45CB-88CA-A4787033E4EF}</Project>
+      <Name>Tasker.JobStorage</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

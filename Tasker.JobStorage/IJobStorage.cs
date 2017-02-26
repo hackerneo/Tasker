@@ -1,4 +1,4 @@
-﻿namespace Tasker.JobServer
+﻿namespace Tasker.JobStorage
 {
     public interface IJobStorage
     {

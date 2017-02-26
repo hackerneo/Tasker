@@ -10,7 +10,7 @@
         {
             var container = new WindsorContainer();
             AppStarter.Init(container);
-            //AppStarter.StartTasker();
+            AppStarter.StartTasker(container);
             Console.ReadKey();
            // AppStarter.StopTasker;
         }
