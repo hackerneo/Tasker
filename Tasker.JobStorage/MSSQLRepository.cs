@@ -2,6 +2,7 @@
 {
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.Migrations;
     using System.Linq;
     using Castle.Windsor;
     using Core;
@@ -10,27 +11,44 @@
     {
         private IWindsorContainer container { get; set; }
 
-        private DbSet<T> Entities { get; set; } 
+        public DbSet<T> Entities { get; set; } 
 
-        public MssqlRepository(IWindsorContainer container) : base("asd")
+        public MssqlRepository(IWindsorContainer container) : base("Data Source=.;Initial Catalog=tasker;Integrated Security=True")
         {
             this.container = container;
         }
 
         public IQueryable<T> GetAll()
         {
-            return Entities; 
+            return this.Entities;
         }
 
         public T GetById(Guid id)
         {
-            return Entities.FirstOrDefault(a => a.Id == id);
+            return this.Set<T>().FirstOrDefault(a => a.Id == id);
         }
 
         public void Save(T entity)
         {
-            Entities.Attach(entity);
-            base.SaveChanges();
+            using (var transaction = this.Database.BeginTransaction())
+            {
+                try
+                {
+                    this.Set<T>().AddOrUpdate(entity);
+                    this.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<T>().ToTable(typeof (T).Name);
         }
     }
 }

@@ -7,10 +7,10 @@
     {
         public string Name { get; set; }
 
-        public string Parameters { get; set; }
-
         public DateTime ExecuteAfter { get; set; }
 
-        public bool ExecutedStatus { get; set; }
+        public string Parameters { get; set; }
+
+        public JobStatus ExecutionStatus { get; set; }
     }
 }

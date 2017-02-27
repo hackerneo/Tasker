@@ -6,7 +6,7 @@
     using Core.Interfaces;
     using JobStorage;
 
-    public class JobServer: IJobServer
+    public class JobServer : IJobServer
     {
         private IWindsorContainer Container { get; set; }
 
@@ -33,13 +33,22 @@
             var jobStor = Container.Resolve<IJobStorage>();
             while (true)
             {
-                var j = jobStor.GetNextJob();
-                if (j != null)
+                //var newJob = new Job()
+                //{
+                //    Id = Guid.NewGuid(),
+                //    ExecuteAfter = DateTime.Now - TimeSpan.FromDays(1),
+                //    ExecutionStatus = JobStatus.Ready,
+                //    Name = "test",
+                //    Parameters = ""
+                //};
 
+                //jobStor.AddJob(newJob);
+
+                var job = jobStor.GetNextJob();
+                if (job != null)
                 {
-                    //тут будем выполнять задачи   
-
-                    jobStor.SetJobDone(j);
+                     //тут будем выполнять задачи
+                    jobStor.SetJobDone(job);
                 }
                 else
                 {

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Tasker.JobStorage
+﻿namespace Tasker.JobStorage
 {
+    using System;
+    using System.Linq;
     using Castle.Windsor;
 
     class JobStorage : IJobStorage
@@ -19,18 +15,41 @@ namespace Tasker.JobStorage
 
         public Job GetNextJob()
         {
-            using (var job = this.Container.Resolve<IRepository<Job>>())
+            using (var JobRepos = this.Container.Resolve<IRepository<Job>>())
             {
-                return job.GetAll().FirstOrDefault(a => a.ExecutedStatus == false && a.ExecuteAfter >= DateTime.Now);
+                var job =  JobRepos.GetAll().Where(a => a.ExecutionStatus == JobStatus.Ready && a.ExecuteAfter < DateTime.Now).OrderBy(a => a.ExecuteAfter).FirstOrDefault();
+
+                if (job != null)
+                {
+                    try
+                    {
+                        job.ExecutionStatus = JobStatus.Executing;
+                        JobRepos.Save(job);
+                    }
+                    catch (Exception)
+                    {
+                        return null;
+                    }
+                }
+
+                return job;
             }
         }
 
         public void SetJobDone(Job job)
         {
-            job.ExecutedStatus = true;
+            job.ExecutionStatus = JobStatus.Executed;
             using (var jobrepos = this.Container.Resolve<IRepository<Job>>())
             {
                 jobrepos.Save(job);
+            }
+        }
+
+        public void AddJob(Job newJob)
+        {
+            using (var jobrepos = this.Container.Resolve<IRepository<Job>>())
+            {
+                jobrepos.Save(newJob);
             }
         }
     }

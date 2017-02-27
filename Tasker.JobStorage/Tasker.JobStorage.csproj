@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,6 +61,7 @@
     <Compile Include="IJobStorage.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Job.cs" />
+    <Compile Include="JobStatus.cs" />
     <Compile Include="JobStorage.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="MSSQLRepository.cs" />
@@ -83,6 +85,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
   <Import Project="$(ProjectDir)\..\TaskerModules.targets" />
 </Project>
