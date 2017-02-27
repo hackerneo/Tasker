@@ -33,17 +33,6 @@
             var jobStor = Container.Resolve<IJobStorage>();
             while (true)
             {
-                //var newJob = new Job()
-                //{
-                //    Id = Guid.NewGuid(),
-                //    ExecuteAfter = DateTime.Now - TimeSpan.FromDays(1),
-                //    ExecutionStatus = JobStatus.Ready,
-                //    Name = "test",
-                //    Parameters = ""
-                //};
-
-                //jobStor.AddJob(newJob);
-
                 var job = jobStor.GetNextJob();
                 if (job != null)
                 {
@@ -52,7 +41,7 @@
                 }
                 else
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(100);
                 }
             }
         }
