@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Tasker.JobType.CreateFile
+﻿namespace Tasker.JobType.CreateFile
 {
+    using System.Configuration;
+    using System.Linq;
     using Castle.Windsor;
     using Core;
 
@@ -42,6 +38,10 @@ namespace Tasker.JobType.CreateFile
 
         public void ValidateModule()
         {
+            if (!ConfigurationManager.AppSettings.AllKeys.Contains("PathToSave"))
+            { 
+                throw new ConfigurationErrorsException("Параметр конфигурации PathToSave не задан.");
+            }
         }
     }
 }

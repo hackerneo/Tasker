@@ -11,9 +11,9 @@
     {
         private IWindsorContainer Container { get; set; }
 
-        public DbSet<T> Entities { get; set; } 
+        public DbSet<T> Entities { get; set; }
 
-        public MssqlRepository(IWindsorContainer container) : base("Data Source=.;Initial Catalog=tasker;Integrated Security=True")
+        public MssqlRepository(IWindsorContainer container) : base("Tasker.DBConnection")
         {
             this.Container = container;
         }

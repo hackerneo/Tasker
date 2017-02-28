@@ -1,5 +1,6 @@
 ﻿namespace Tasker.JobType.EmailSender
 {
+    using System.Configuration;
     using System.Net;
     using System.Net.Mail;
     using Core;
@@ -14,15 +15,15 @@
         {
             using (var smtpClient = new SmtpClient
             {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                Timeout = 10000,
+                Host = ConfigurationManager.AppSettings["SMTPHost"],
+                Port = int.Parse(ConfigurationManager.AppSettings["SMTPPort"]),
+                EnableSsl = bool.Parse(ConfigurationManager.AppSettings["SMTPUseSSL"]),
+                Timeout = int.Parse(ConfigurationManager.AppSettings["SMTPTimeout"]),
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential {UserName = "", Password = ""}
+                Credentials = new NetworkCredential {UserName = ConfigurationManager.AppSettings["SMTPUser"], Password = ConfigurationManager.AppSettings["SMTPPassword"] }
             })
             {
-                using (var mailMessage = new MailMessage(parameters["sender"], parameters["recipient"]))
+                using (var mailMessage = new MailMessage(parameters["Sender"], parameters["Recipient"]))
                 {
                     mailMessage.Subject = parameters["Subject"];
                     mailMessage.Body = parameters["Body"];
