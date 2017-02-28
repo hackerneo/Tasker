@@ -9,13 +9,13 @@
 
     public class MssqlRepository<T>: DbContext, IRepository<T> where T : BaseEntity
     {
-        private IWindsorContainer container { get; set; }
+        private IWindsorContainer Container { get; set; }
 
         public DbSet<T> Entities { get; set; } 
 
         public MssqlRepository(IWindsorContainer container) : base("Data Source=.;Initial Catalog=tasker;Integrated Security=True")
         {
-            this.container = container;
+            this.Container = container;
         }
 
         public IQueryable<T> GetAll()
@@ -48,7 +48,7 @@
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<T>().ToTable(typeof (T).Name);
+            modelBuilder.Entity<T>().ToTable(typeof(T).Name);
         }
     }
 }

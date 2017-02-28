@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Tasker.JobType.Delay
+﻿namespace Tasker.JobType.EmailSender
 {
     using Castle.Windsor;
     using Core;
@@ -21,23 +15,25 @@ namespace Tasker.JobType.Delay
 
         public string Id
         {
-            get { return "Tasker.JobType.Delay";  }
+            get { return "Tasker.JobType.EmailSender"; }
         }
 
         public string Name
         {
             get
             {
-                return "JobType.Delay";
+                return "JobType.EmailSender";
             }
         }
 
-        public string Description {
-            get { return ""; } }
+        public string Description
+        {
+            get { return ""; }
+        }
 
         public void InitModule()
         {
-            this.Container.RegisterJobType<JobTypeDelay>();
+            this.Container.RegisterJobType<EmailSender>();
         }
 
         public void ValidateModule()

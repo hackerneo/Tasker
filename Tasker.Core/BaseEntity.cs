@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class BaseEntity
+    public abstract class BaseEntity
     {
         public Guid Id { get; set; }
 

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Tasker.JobType.Delay")]
+[assembly: AssemblyTitle("Tasker.JobType.CreateFile")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Tasker.JobType.Delay")]
+[assembly: AssemblyProduct("Tasker.JobType.CreateFile")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("7e1a0807-d2a0-4ebe-a813-6668891fd797")]
+[assembly: Guid("6a596290-61a4-41c4-9d3c-c36548e102d2")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

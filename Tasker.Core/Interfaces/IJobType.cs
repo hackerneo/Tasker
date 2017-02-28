@@ -14,6 +14,6 @@ namespace Tasker.Core
 
         string Description { get;  }
 
-        void Execute(string parameters);
+        void Execute(JobParameters parameters);
     }
 }
