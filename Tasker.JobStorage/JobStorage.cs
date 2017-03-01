@@ -18,18 +18,10 @@
             using (var JobRepos = this.Container.Resolve<IRepository<Job>>())
             {
                 var job =  JobRepos.GetAll().Where(a => a.ExecutionStatus == JobStatus.Ready && a.ExecuteAfter < DateTime.Now).OrderBy(a => a.ExecuteAfter).FirstOrDefault();
-
                 if (job != null)
                 {
-                    try
-                    {
-                        job.ExecutionStatus = JobStatus.Executing;
-                        JobRepos.Save(job);
-                    }
-                    catch (Exception)
-                    {
-                        return null;
-                    }
+                    job.ExecutionStatus = JobStatus.Executing;
+                    JobRepos.Save(job);
                 }
 
                 return job;
