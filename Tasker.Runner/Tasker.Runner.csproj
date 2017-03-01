@@ -65,7 +65,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -75,13 +77,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandLine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceInstall.cs" />
     <Compile Include="TaskService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="TaskService.Designer.cs">
       <DependentUpon>TaskService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TaskServiceInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TaskServiceInstaller.Designer.cs">
+      <DependentUpon>TaskServiceInstaller.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
