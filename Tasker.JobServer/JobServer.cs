@@ -54,36 +54,18 @@
 
                     if (job != null)
                     {
-                        logger.Notice(string.Format("Получена задача {0} c параметрами: {1}", job.Name, job.ParsedParameters.ToString()));
+                        logger.Notice(string.Format("Получена задача {0} c параметрами: {1}", job.Name, job.ParsedParameters));
 
                         var jobtype = this.Container.Resolve<IJobType>(job.Name);
                         jobtype.Execute(job.ParsedParameters);
+
                         jobStor.SetJobDone(job);
 
                         logger.Notice(string.Format("Завершено выполнение задачи {0}", job.Name));
                     }
                     else
                     {
-                        Thread.Sleep(100);
-                        logger.Warning("Спим");
-                        var jobparams = new JobParameters();
-                        jobparams.Add("filename", "test.txt");
-                        jobStor.AddJob(new Job
-                        {
-                            Id = Guid.NewGuid(),
-                            Name = "createfile",
-                            ExecuteAfter = DateTime.Now - TimeSpan.FromDays(1),
-                            ExecutionStatus = JobStatus.Ready,
-                            ParsedParameters = jobparams
-                        });
-
-                        /* var jobparams = new JobParameters();
-                    jobparams.Add("sender", "rosaviasub@gmail.com");
-                    jobparams.Add("recipient", "rosaviasub@gmail.com");
-                    jobparams.Add("Subject", "Проверка связи");
-                    jobparams.Add("Body", "тест");
-                    jobStor.AddJob(new Job { Id = Guid.NewGuid(), Name = "emailsender", ExecuteAfter = DateTime.Now - TimeSpan.FromDays(1), ExecutionStatus = JobStatus.Ready, ParsedParameters = jobparams });
-                    */
+                        Thread.Sleep(TimeSpan.FromSeconds(5));
                     }
                 }
                 catch (Exception e)

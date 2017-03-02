@@ -31,7 +31,7 @@
         private void InitializeComponent()
         {
             components = new Container();
-            this.ServiceName = "TaskService";
+            this.ServiceName = "TaskerService";
         }
 
         #endregion
