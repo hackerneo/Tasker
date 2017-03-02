@@ -1,11 +1,13 @@
 ﻿namespace Tasker.Runner
 {
+    using System.ComponentModel;
+
     partial class TaskService
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Освободить все используемые ресурсы.
@@ -28,7 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            components = new Container();
             this.ServiceName = "TaskService";
         }
 

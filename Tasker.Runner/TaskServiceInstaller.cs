@@ -1,8 +1,8 @@
 ﻿namespace Tasker.Runner
 {
+    using System.Collections;
     using System.ComponentModel;
     using System.Configuration.Install;
-    using System.Collections;
 
     [RunInstaller(true)]
     public partial class TaskServiceInstaller : Installer
@@ -14,7 +14,7 @@
 
         private void ApplyParameters(bool install)
         {
-            TaskServiceInstaller.ApplyParameters(Context, install);
+            MyServiceInstaller.ApplyParameters(Context, install);
             TaskServiceProcessInstaller.ApplyParameters(Context, install);
         }
 

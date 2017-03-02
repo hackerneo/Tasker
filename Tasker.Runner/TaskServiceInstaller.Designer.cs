@@ -1,11 +1,15 @@
 ﻿namespace Tasker.Runner
 {
+    using System.ComponentModel;
+    using System.Configuration.Install;
+    using System.ServiceProcess;
+
     partial class TaskServiceInstaller
     {
         /// <summary>
         /// Обязательная переменная конструктора.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Освободить все используемые ресурсы.
@@ -20,7 +24,8 @@
             base.Dispose(disposing);
         }
 
-        private System.ServiceProcess.ServiceProcessInstaller TaskServiceProcessInstaller;
+        private ServiceProcessInstaller TaskServiceProcessInstaller;
+        private ServiceInstaller MyServiceInstaller; 
 
         #region Код, автоматически созданный конструктором компонентов
 
@@ -30,7 +35,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            components = new Container();
+            this.TaskServiceProcessInstaller = new ServiceProcessInstaller();
+            this.MyServiceInstaller = new ServiceInstaller();
+
+            this.TaskServiceProcessInstaller.Account = ServiceAccount.LocalService;
+            this.TaskServiceProcessInstaller.Password = null;
+            this.TaskServiceProcessInstaller.Username = null;
+
+            this.MyServiceInstaller.ServiceName = "MyService1123";
+
+            this.Installers.AddRange(new Installer[] {
+            this.TaskServiceProcessInstaller,
+            this.MyServiceInstaller});
         }
 
         #endregion

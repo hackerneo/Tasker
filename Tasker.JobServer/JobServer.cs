@@ -26,7 +26,8 @@
 
         public void StopExecuting()
         {
-            this.executingThread.Interrupt();
+            this.executingThread.Abort();
+            this.executingThread.Join(500);
         }
 
         private void Start()

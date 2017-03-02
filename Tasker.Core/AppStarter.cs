@@ -4,22 +4,28 @@
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using System.Threading;
     using Castle.MicroKernel.Registration;
     using Castle.Windsor;
     using Interfaces;
 
     public static class AppStarter
     {
-        public static void Init(WindsorContainer container)
+        public static void Init(IWindsorContainer container)
         {
             InitIoC(container);
             InitModulesFolder();
             InitModules(container);
         }
 
-        public static void StartTasker(WindsorContainer container)
+        public static void StartTasker(IWindsorContainer container)
         {
             container.Resolve<IJobServer>().StartExecuting();
+        }
+
+        public static void StopTasker(IWindsorContainer container)
+        {
+            container.Resolve<IJobServer>().StopExecuting();
         }
 
         private static void InitIoC(IWindsorContainer container)

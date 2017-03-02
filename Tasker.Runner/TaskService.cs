@@ -1,22 +1,29 @@
 ﻿namespace Tasker.Runner
 {
     using System.ServiceProcess;
+    using Castle.Windsor;
+    using Core;
 
     partial class TaskService : ServiceBase
     {
+        private IWindsorContainer Container { get; set; }
+
         public TaskService()
         {
+            this.Container = new WindsorContainer();
             InitializeComponent();
         }
 
         protected override void OnStart(string[] args)
         {
-            // TODO: Добавьте код для запуска службы.
+            
+            AppStarter.Init(this.Container);
+            AppStarter.StartTasker(this.Container);
         }
 
         protected override void OnStop()
         {
-            // TODO: Добавьте код, выполняющий подготовку к остановке службы.
+            AppStarter.StopTasker(this.Container);
         }
     }
 }

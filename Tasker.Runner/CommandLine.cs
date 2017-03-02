@@ -1,6 +1,7 @@
 ﻿namespace Tasker.Runner
 {
     using System;
+
     internal static class CommandLine
   {
     private const string Prefixes = "-/";
