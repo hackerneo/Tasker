@@ -5,10 +5,10 @@
 
     public class JobParameters : Dictionary<string, string>
     {
-        public static JobParameters JobParametersDeserializeFromString(string Str)
+        public static JobParameters JobParametersDeserializeFromString(string str)
         {
             var result = new JobParameters();
-            foreach (var splittedParam in Str.Split(';').Where(param => param.Length != 0).Select(param => param.Split(':')))
+            foreach (var splittedParam in str.Split(';').Where(param => param.Length != 0).Select(param => param.Split(':')))
             {
                 result.Add(splittedParam[0], splittedParam[1]);
             }

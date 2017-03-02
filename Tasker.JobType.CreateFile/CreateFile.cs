@@ -17,7 +17,6 @@
         {
             Thread.Sleep(TimeSpan.FromSeconds(10));
             var path = ConfigurationManager.AppSettings["PathToSave"] + parameters["filename"];
-            
 
             if (File.Exists(path))
             {

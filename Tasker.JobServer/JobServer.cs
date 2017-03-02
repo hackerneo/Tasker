@@ -56,7 +56,7 @@
 
             while (true)
             {
-                if (CancelOperation)
+                if (this.CancelOperation)
                 {
                     break;
                 }

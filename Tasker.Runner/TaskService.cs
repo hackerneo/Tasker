@@ -1,13 +1,10 @@
 ﻿namespace Tasker.Runner
 {
-    using System.IO;
     using System.ServiceProcess;
-    using Castle.Windsor;
     using Core;
 
     public partial class TaskService : ServiceBase
     {
-
         public TaskService()
         {
             this.InitializeComponent();

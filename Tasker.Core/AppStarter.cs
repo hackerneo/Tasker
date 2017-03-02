@@ -8,48 +8,47 @@
 
     public static class AppStarter
     {
-        private static readonly IWindsorContainer container = new WindsorContainer();
+        private static readonly IWindsorContainer Container = new WindsorContainer();
 
-        private static bool IsAppInited = false;
+        private static bool isAppInited = false;
 
-        private static AppMode AppStartedMode;
+        private static AppMode appStartedMode;
 
         public static void Init(AppMode appMode)
         {
-            if (!IsAppInited)
+            if (!isAppInited)
             {
-                AppStartedMode = appMode;
+                appStartedMode = appMode;
                 InitIoC();
                 InitModulesFolder();
                 InitModules();
-                IsAppInited = true;
+                isAppInited = true;
             }
         }
 
         public static void StartTasker()
         {
-            container.Resolve<IJobServer>().StartExecuting();
+            Container.Resolve<IJobServer>().StartExecuting();
         }
 
         public static void StopTasker()
         {
-            container.Resolve<IJobServer>().StopExecuting();
+            Container.Resolve<IJobServer>().StopExecuting();
         }
 
         private static void InitIoC()
         {
-            container.Register(Component.For<IWindsorContainer>().Instance(container));
-            container.Register(Component.For<IModuleProvider>().ImplementedBy<ModuleProvider>().LifestyleTransient());
-            container.Register(Component.For<IModuleLoader>().ImplementedBy<ModuleLoader>().LifestyleTransient());
-            if (AppStartedMode == AppMode.ConsoleApplication)
+            Container.Register(Component.For<IWindsorContainer>().Instance(Container));
+            Container.Register(Component.For<IModuleProvider>().ImplementedBy<ModuleProvider>().LifestyleTransient());
+            Container.Register(Component.For<IModuleLoader>().ImplementedBy<ModuleLoader>().LifestyleTransient());
+            if (appStartedMode == AppMode.ConsoleApplication)
             {
-                container.Register(Component.For<ILogger>().ImplementedBy<ConsoleLogger>().LifestyleTransient());
+                Container.Register(Component.For<ILogger>().ImplementedBy<ConsoleLogger>().LifestyleTransient());
             }
             else
             {
-                container.Register(Component.For<ILogger>().ImplementedBy<ServiceLogger>().LifestyleTransient());
+                Container.Register(Component.For<ILogger>().ImplementedBy<ServiceLogger>().LifestyleTransient());
             }
-
         }
 
         private static void InitModulesFolder()
@@ -82,16 +81,16 @@
         {
             try
             {
-                var assemblies = container.Resolve<IModuleProvider>().GetAssemblies();
+                var assemblies = Container.Resolve<IModuleProvider>().GetAssemblies();
                 foreach (var assembly in assemblies)
                 {
                     foreach (var module in assembly.GetTypes().Where(x => typeof(IModule).IsAssignableFrom(x)))
                     {
-                        container.Register(Component.For<IModule>().ImplementedBy(module).Named(module.FullName.ToLowerInvariant()).LifestyleTransient());
+                        Container.Register(Component.For<IModule>().ImplementedBy(module).Named(module.FullName.ToLowerInvariant()).LifestyleTransient());
                     }
                 }
 
-                container.Resolve<IModuleLoader>().LoadModules();
+                Container.Resolve<IModuleLoader>().LoadModules();
             }
             catch (Exception)
             {

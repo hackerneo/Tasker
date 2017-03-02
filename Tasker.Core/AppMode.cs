@@ -4,6 +4,6 @@
     {
         ConsoleApplication = 0,
 
-        WindowsService =1
+        WindowsService = 1
     }
 }
