@@ -1,11 +1,10 @@
-﻿namespace Tasker.Logger
+﻿namespace Tasker.Core
 {
     using System;
     using System.Globalization;
     using System.Text;
-    using Core;
 
-    public class Logger : ILogger
+    public class ConsoleLogger : ILogger
     {
         public void Notice(string message)
         {

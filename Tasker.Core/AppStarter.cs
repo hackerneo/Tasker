@@ -3,36 +3,53 @@
     using System;
     using System.IO;
     using System.Linq;
-    using System.Reflection;
-    using System.Threading;
     using Castle.MicroKernel.Registration;
     using Castle.Windsor;
-    using Interfaces;
 
     public static class AppStarter
     {
-        public static void Init(IWindsorContainer container)
+        private static readonly IWindsorContainer container = new WindsorContainer();
+
+        private static bool IsAppInited = false;
+
+        private static AppMode AppStartedMode;
+
+        public static void Init(AppMode appMode)
         {
-            InitIoC(container);
-            InitModulesFolder();
-            InitModules(container);
+            if (!IsAppInited)
+            {
+                AppStartedMode = appMode;
+                InitIoC();
+                InitModulesFolder();
+                InitModules();
+                IsAppInited = true;
+            }
         }
 
-        public static void StartTasker(IWindsorContainer container)
+        public static void StartTasker()
         {
             container.Resolve<IJobServer>().StartExecuting();
         }
 
-        public static void StopTasker(IWindsorContainer container)
+        public static void StopTasker()
         {
             container.Resolve<IJobServer>().StopExecuting();
         }
 
-        private static void InitIoC(IWindsorContainer container)
+        private static void InitIoC()
         {
             container.Register(Component.For<IWindsorContainer>().Instance(container));
             container.Register(Component.For<IModuleProvider>().ImplementedBy<ModuleProvider>().LifestyleTransient());
             container.Register(Component.For<IModuleLoader>().ImplementedBy<ModuleLoader>().LifestyleTransient());
+            if (AppStartedMode == AppMode.ConsoleApplication)
+            {
+                container.Register(Component.For<ILogger>().ImplementedBy<ConsoleLogger>().LifestyleTransient());
+            }
+            else
+            {
+                container.Register(Component.For<ILogger>().ImplementedBy<ServiceLogger>().LifestyleTransient());
+            }
+
         }
 
         private static void InitModulesFolder()
@@ -61,7 +78,7 @@
             CopyFolder(pluginFolder.FullName, shadowCopyFolder.FullName);
         }
 
-        private static void InitModules(IWindsorContainer container)
+        private static void InitModules()
         {
             try
             {

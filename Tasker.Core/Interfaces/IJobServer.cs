@@ -1,4 +1,4 @@
-﻿namespace Tasker.Core.Interfaces
+﻿namespace Tasker.Core
 {
     public interface IJobServer
     {

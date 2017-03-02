@@ -14,12 +14,12 @@
         {
             get
             {
-                return this.ParsedParameters.SerializeToBase64String();
+                return this.ParsedParameters.ToString();
             }
 
             set
             {
-                this.ParsedParameters = JobParameters.JobParametersDeserializeFromBase64String(value);
+                this.ParsedParameters = JobParameters.JobParametersDeserializeFromString(value);
             }
         }
 

@@ -3,7 +3,6 @@
     using System;
     using Castle.MicroKernel.Registration;
     using Castle.Windsor;
-    using Core.Interfaces;
     using Tasker.Core;
 
     public class Module : IModule

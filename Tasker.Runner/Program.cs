@@ -65,17 +65,17 @@
                 if (selectedItem != null && selectedItem.StartsWith("3"))
                 {
                     Console.Clear();
-                    var container = new WindsorContainer();
-                    AppStarter.Init(container);
-                    AppStarter.StartTasker(container);
+                    AppStarter.Init(AppMode.ConsoleApplication);
+                    AppStarter.StartTasker();
                     Console.ReadKey();
-                    AppStarter.StopTasker(container);
+                    AppStarter.StopTasker();
+                    Console.WriteLine("Для продолжения нажмите любую клавишу...");
+                    Console.ReadKey();
                     return 0;
                 }
 
                 if (selectedItem != null && selectedItem.StartsWith("4"))
                 {
-                    Console.Clear();
                     Console.WriteLine("Для установки службы TaskerService необходимо запустить Tasker.Runner.exe с параметром -Install");
                     Console.WriteLine("Для удаления службы TaskerService необходимо запустить Tasker.Runner.exe с параметром -Uninstall");
                     Console.WriteLine("Запуск службы осуществляется стандартными инструментами Windows");

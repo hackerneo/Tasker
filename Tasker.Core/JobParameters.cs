@@ -5,20 +5,15 @@
 
     public class JobParameters : Dictionary<string, string>
     {
-        public static JobParameters JobParametersDeserializeFromBase64String(string base64String)
+        public static JobParameters JobParametersDeserializeFromString(string Str)
         {
             var result = new JobParameters();
-            foreach (var splittedParam in StringExtensions.Base64StringDecode(base64String).Split(';').Where(param => param.Length != 0).Select(param => param.Split(':')))
+            foreach (var splittedParam in Str.Split(';').Where(param => param.Length != 0).Select(param => param.Split(':')))
             {
                 result.Add(splittedParam[0], splittedParam[1]);
             }
 
             return result;
-        }
-
-        public string SerializeToBase64String()
-        {
-            return this.ToString().ToBase64String();
         }
 
         public override string ToString()
