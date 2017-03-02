@@ -195,11 +195,11 @@
     </timestamps>
     <violations />
   </sourcecode>
-  <sourcecode name="Program.cs" parser="StyleCop.CSharp.CsParser">
+  <sourcecode name="TaskService.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016.12.21 10:55:42.810</styleCop>
       <settingsFile>2017.03.01 12:37:42.361</settingsFile>
-      <sourceFile>2017.03.02 15:22:57.459</sourceFile>
+      <sourceFile>2017.03.02 15:24:11.177</sourceFile>
       <parser>2016.12.21 10:55:42.810</parser>
       <StyleCop.CSharp.DocumentationRules>2016.12.21 10:55:42.810</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-818834318</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -221,11 +221,11 @@
   <project key="-1300690506">
     <configuration>DEBUG;TRACE</configuration>
   </project>
-  <sourcecode name="TaskService.cs" parser="StyleCop.CSharp.CsParser">
+  <sourcecode name="Program.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016.12.21 10:55:42.810</styleCop>
       <settingsFile>2017.03.01 12:37:42.361</settingsFile>
-      <sourceFile>2017.03.02 15:24:11.177</sourceFile>
+      <sourceFile>2017.03.02 18:16:36.810</sourceFile>
       <parser>2016.12.21 10:55:42.810</parser>
       <StyleCop.CSharp.DocumentationRules>2016.12.21 10:55:42.810</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-818834318</StyleCop.CSharp.DocumentationRules.FilesHashCode>

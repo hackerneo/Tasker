@@ -7,11 +7,10 @@
 
     public class EmailSender : IJobType
     {
-        public string Id { get; }
-
-        public string Name { get; }
-
-        public string Description { get; }
+        public string Description
+        {
+            get { return "Отправляет сообщение на e-mail"; }
+        }
 
         public void Execute(JobParameters parameters)
         {

@@ -2,3 +2,4 @@
 Tasker.Core/obj/
 */obj/*
 */bin/*
+*.Cache

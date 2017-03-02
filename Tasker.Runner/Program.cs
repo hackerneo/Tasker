@@ -43,7 +43,6 @@
         {
             while (true)
             {
-
                 Console.WriteLine("Введите номер пункта меню и нажмите Etner: ");
                 Console.WriteLine("1. Установить службу TaskerService (Требуется запуск от имени Администратора.");
                 Console.WriteLine("2. Удалить службу TaskerService (Требуется запуск от имени Администратора.");
@@ -55,12 +54,12 @@
 
                 if (selectedItem != null && selectedItem.StartsWith("1"))
                 {
-                    ServiceInstall.Install<TaskerServiceInstaller>(new[] {"Install"});
+                    ServiceInstall.Install<TaskerServiceInstaller>(new[] { "Install" });
                 }
 
                 if (selectedItem != null && selectedItem.StartsWith("2"))
                 {
-                    ServiceInstall.Install<TaskerServiceInstaller>(new[] {"Uninstall"});
+                    ServiceInstall.Install<TaskerServiceInstaller>(new[] { "Uninstall" });
                 }
 
                 if (selectedItem != null && selectedItem.StartsWith("3"))

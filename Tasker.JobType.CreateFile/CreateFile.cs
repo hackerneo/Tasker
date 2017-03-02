@@ -8,11 +8,10 @@
 
     public class CreateFile : IJobType
     {
-        public string Id { get; }
-
-        public string Name { get; }
-
-        public string Description { get; }
+       public string Description
+        {
+           get { return "Производит паузу и создание фала с названием, переданным в параметре filename."; }
+        }
 
         public void Execute(JobParameters parameters)
         {
