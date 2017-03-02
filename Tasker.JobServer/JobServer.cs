@@ -79,18 +79,6 @@
                     else
                     {
                         Thread.Sleep(TimeSpan.FromSeconds(5));
-                        logger.Warning("Спим");
-                        var jobparams = new JobParameters();
-                        jobparams.Add("filename", "test.txt");
-                        jobStor.AddJob(new Job
-                        {
-                            Id = Guid.NewGuid(),
-                            Name = "createfile",
-                            ExecuteAfter = DateTime.Now - TimeSpan.FromDays(1),
-                            ExecutionStatus = JobStatus.Ready,
-                            ParsedParameters = jobparams
-                        });
-
                     }
                 }
                 catch (Exception e)
