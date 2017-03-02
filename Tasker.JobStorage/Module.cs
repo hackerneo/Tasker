@@ -6,9 +6,13 @@
     using Core;
 
     public class Module : IModule
-
     {
         private readonly IWindsorContainer container;
+
+        public Module(IWindsorContainer container)
+        {
+            this.container = container;
+        }
 
         public string Id
         {
@@ -22,19 +26,15 @@
 
         public string Description
         {
-            get { return ""; }
+            get { return string.Empty; }
         }
 
-        public Module(IWindsorContainer container)
-        {
-            this.container = container;
-        }
         public void InitModule()
         {
-            container.Register(
+            this.container.Register(
                 Component.For<IRepository<Job>>().ImplementedBy<MssqlRepository<Job>>().LifestyleTransient());
 
-            container.Register(Component.For<IJobStorage>().ImplementedBy<JobStorage>().LifestyleTransient());
+            this.container.Register(Component.For<IJobStorage>().ImplementedBy<JobStorage>().LifestyleTransient());
         }
 
         public void ValidateModule()

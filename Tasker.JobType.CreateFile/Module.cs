@@ -7,12 +7,11 @@
 
     public class Module : IModule
     {
-
-        private IWindsorContainer Container { get; set; }
+        private readonly IWindsorContainer container;
 
         public Module(IWindsorContainer container)
         {
-            this.Container = container;
+            this.container = container;
         }
 
         public string Id
@@ -28,12 +27,14 @@
             }
         }
 
-        public string Description {
-            get { return ""; } }
+        public string Description
+        {
+            get { return string.Empty; }
+        }
 
         public void InitModule()
         {
-            this.Container.RegisterJobType<CreateFile>();
+            this.container.RegisterJobType<CreateFile>();
         }
 
         public void ValidateModule()

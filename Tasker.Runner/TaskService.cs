@@ -4,26 +4,25 @@
     using Castle.Windsor;
     using Core;
 
-    partial class TaskService : ServiceBase
+    public partial class TaskService : ServiceBase
     {
-        private IWindsorContainer Container { get; set; }
+        private readonly IWindsorContainer iocContainer;
 
         public TaskService()
         {
-            this.Container = new WindsorContainer();
-            InitializeComponent();
+            this.iocContainer = new WindsorContainer();
+            this.InitializeComponent();
         }
 
         protected override void OnStart(string[] args)
         {
-            
-            AppStarter.Init(this.Container);
-            AppStarter.StartTasker(this.Container);
+            AppStarter.Init(this.iocContainer);
+            AppStarter.StartTasker(this.iocContainer);
         }
 
         protected override void OnStop()
         {
-            AppStarter.StopTasker(this.Container);
+            AppStarter.StopTasker(this.iocContainer);
         }
     }
 }

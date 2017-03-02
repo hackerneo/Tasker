@@ -6,7 +6,7 @@
 
     public static class WindsorExtensions
     {
-        public static void RegisterJobType<T>(this IWindsorContainer container) where T: IJobType
+        public static void RegisterJobType<T>(this IWindsorContainer container) where T : IJobType
         {
             var typeJobName = typeof(T).Name.ToLowerInvariant();
             if (!container.Name.Contains(typeJobName))

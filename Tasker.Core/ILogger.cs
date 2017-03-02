@@ -5,9 +5,9 @@
 
     public interface ILogger
     {
-        void Notice (string message);
+        void Notice(string message);
 
-        void Error (string message);
+        void Error(string message);
 
         void Warning(string message);
     }

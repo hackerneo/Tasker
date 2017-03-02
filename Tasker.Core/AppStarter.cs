@@ -76,8 +76,9 @@
 
                 container.Resolve<IModuleLoader>().LoadModules();
             }
-            catch (ReflectionTypeLoadException refex)
+            catch (Exception)
             {
+                // ignored
             }
         }
 

@@ -9,26 +9,26 @@
     {
         public TaskerServiceInstaller()
         {
-            InitializeComponent();
-        }
-
-        private void ApplyParameters(bool install)
-        {
-            TaskServiceInstaller.ApplyParameters(Context, install);
-            TaskServiceProcessInstaller.ApplyParameters(Context, install);
+            this.InitializeComponent();
         }
 
         protected override void OnBeforeInstall(IDictionary savedState)
         {
-            ServiceInstall.UpdateCommandLine(Context);
-            ApplyParameters(true);
+            ServiceInstall.UpdateCommandLine(this.Context);
+            this.ApplyParameters(true);
             base.OnBeforeInstall(savedState);
         }
 
         protected override void OnBeforeUninstall(IDictionary savedState)
         {
-            ApplyParameters(false);
+            this.ApplyParameters(false);
             base.OnBeforeUninstall(savedState);
+        }
+
+        private void ApplyParameters(bool install)
+        {
+            this.TaskServiceInstaller.ApplyParameters(this.Context, install);
+            this.TaskServiceProcessInstaller.ApplyParameters(this.Context, install);
         }
     }
 }

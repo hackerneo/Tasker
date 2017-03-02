@@ -5,7 +5,7 @@
     using System.Text;
     using Core;
 
-    public class Logger: ILogger
+    public class Logger : ILogger
     {
         public void Notice(string message)
         {

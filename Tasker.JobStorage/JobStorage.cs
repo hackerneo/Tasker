@@ -4,24 +4,24 @@
     using System.Linq;
     using Castle.Windsor;
 
-    class JobStorage : IJobStorage
+    public class JobStorage : IJobStorage
     {
-        private IWindsorContainer Container { get; set; }
-
         public JobStorage(IWindsorContainer container)
         {
             this.Container = container;
         }
 
+        private IWindsorContainer Container { get; }
+
         public Job GetNextJob()
         {
-            using (var JobRepos = this.Container.Resolve<IRepository<Job>>())
+            using (var jobRepos = this.Container.Resolve<IRepository<Job>>())
             {
-                var job =  JobRepos.GetAll().Where(a => a.ExecutionStatus == JobStatus.Ready && a.ExecuteAfter < DateTime.Now).OrderBy(a => a.ExecuteAfter).FirstOrDefault();
+                var job = jobRepos.GetAll().Where(a => a.ExecutionStatus == JobStatus.Ready && a.ExecuteAfter < DateTime.Now).OrderBy(a => a.ExecuteAfter).FirstOrDefault();
                 if (job != null)
                 {
                     job.ExecutionStatus = JobStatus.Executing;
-                    JobRepos.Save(job);
+                    jobRepos.Save(job);
                 }
 
                 return job;

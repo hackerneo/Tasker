@@ -6,9 +6,14 @@
     using Core.Interfaces;
     using Tasker.Core;
 
-    public class Module:IModule
+    public class Module : IModule
     {
         private readonly IWindsorContainer container;
+
+        public Module(IWindsorContainer container)
+        {
+            this.container = container;
+        }
 
         public string Id
         {
@@ -22,12 +27,7 @@
 
         public string Description
         {
-            get { return ""; }
-        }
-
-        public Module(IWindsorContainer container)
-        {
-            this.container = container;
+            get { return string.Empty; }
         }
 
         public void InitModule()

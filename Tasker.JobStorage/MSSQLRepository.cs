@@ -7,16 +7,13 @@
     using Castle.Windsor;
     using Core;
 
-    public class MssqlRepository<T>: DbContext, IRepository<T> where T : BaseEntity
+    public class MssqlRepository<T> : DbContext, IRepository<T> where T : BaseEntity
     {
-        private IWindsorContainer Container { get; set; }
+        public MssqlRepository() : base("Tasker.DBConnection")
+        {
+        }
 
         public DbSet<T> Entities { get; set; }
-
-        public MssqlRepository(IWindsorContainer container) : base("Tasker.DBConnection")
-        {
-            this.Container = container;
-        }
 
         public IQueryable<T> GetAll()
         {

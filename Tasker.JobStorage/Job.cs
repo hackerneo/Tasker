@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using Core;
 
-    public class Job: BaseEntity
+    public class Job : BaseEntity
     {
         public string Name { get; set; }
 
@@ -14,12 +14,12 @@
         {
             get
             {
-                return ParsedParameters.SerializeToBase64String();
+                return this.ParsedParameters.SerializeToBase64String();
             }
 
             set
             {
-                ParsedParameters = JobParameters.JobParametersDeserializeFromBase64String(value);
+                this.ParsedParameters = JobParameters.JobParametersDeserializeFromBase64String(value);
             }
         }
 

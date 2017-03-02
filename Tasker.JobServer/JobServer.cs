@@ -9,35 +9,35 @@
 
     public class JobServer : IJobServer
     {
-        private IWindsorContainer Container { get; }
-
-        private Thread executingThread { get; set; }
-
-        private bool isJobServerStarted { get; set; }
-
         public JobServer(IWindsorContainer container)
         {
             this.Container = container;
-            this.isJobServerStarted = false;
+            this.IsJobServerStarted = false;
         }
+
+        private IWindsorContainer Container { get; }
+
+        private Thread ExecutingThread { get; set; }
+
+        private bool IsJobServerStarted { get; set; }
 
         public void StartExecuting()
         {
-            if (!this.isJobServerStarted)
+            if (!this.IsJobServerStarted)
             {
-                this.executingThread = new Thread(JobServerExecute);
-                this.executingThread.Start();
-                this.isJobServerStarted = true;
+                this.ExecutingThread = new Thread(this.JobServerExecute);
+                this.ExecutingThread.Start();
+                this.IsJobServerStarted = true;
             }
         }
 
         public void StopExecuting()
         {
-            if (this.isJobServerStarted)
+            if (this.IsJobServerStarted)
             {
-                this.executingThread.Abort();
-                this.executingThread.Join(500);
-                this.isJobServerStarted = false;
+                this.ExecutingThread.Abort();
+                this.ExecutingThread.Join(500);
+                this.IsJobServerStarted = false;
             }
         }
 
@@ -54,10 +54,9 @@
 
                     if (job != null)
                     {
-                        logger.Notice(string.Format("Получена задача {0} c параметрами: {1}", job.Name,
-                            job.ParsedParameters.ToString()));
+                        logger.Notice(string.Format("Получена задача {0} c параметрами: {1}", job.Name, job.ParsedParameters.ToString()));
 
-                        var jobtype = Container.Resolve<IJobType>(job.Name);
+                        var jobtype = this.Container.Resolve<IJobType>(job.Name);
                         jobtype.Execute(job.ParsedParameters);
                         jobStor.SetJobDone(job);
 
@@ -85,11 +84,8 @@
                     jobparams.Add("Body", "тест");
                     jobStor.AddJob(new Job { Id = Guid.NewGuid(), Name = "emailsender", ExecuteAfter = DateTime.Now - TimeSpan.FromDays(1), ExecutionStatus = JobStatus.Ready, ParsedParameters = jobparams });
                     */
-
                     }
-
                 }
-
                 catch (Exception e)
                 {
                     logger.Error(e.Message);

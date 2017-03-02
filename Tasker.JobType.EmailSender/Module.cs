@@ -5,16 +5,15 @@
     using Castle.Windsor;
     using Core;
 
-    class Module : IModule
+    public class Module : IModule
     {
-
-        private IWindsorContainer Container { get; set; }
+        private readonly IWindsorContainer container;
 
         public Module(IWindsorContainer container)
         {
-            this.Container = container;
+            this.container = container;
         }
-
+      
         public string Id
         {
             get { return "Tasker.JobType.EmailSender"; }
@@ -30,12 +29,12 @@
 
         public string Description
         {
-            get { return ""; }
+            get { return string.Empty; }
         }
 
         public void InitModule()
         {
-            this.Container.RegisterJobType<EmailSender>();
+            this.container.RegisterJobType<EmailSender>();
         }
 
         public void ValidateModule()
