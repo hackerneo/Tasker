@@ -11,7 +11,7 @@
         {
             try
             {
-                if (ServiceInstall.Install<TaskServiceInstaller>(args))
+                if (ServiceInstall.Install<TaskerServiceInstaller>(args))
                 {
                     return 0;
                 }
@@ -25,7 +25,7 @@
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine(ex.Message);
                 throw;
             }
         }

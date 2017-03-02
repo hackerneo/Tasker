@@ -4,7 +4,7 @@
     using System.Configuration.Install;
     using System.ServiceProcess;
 
-    partial class TaskServiceInstaller
+    partial class TaskerServiceInstaller
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -25,7 +25,7 @@
         }
 
         private ServiceProcessInstaller TaskServiceProcessInstaller;
-        private ServiceInstaller MyServiceInstaller; 
+        private ServiceInstaller TaskServiceInstaller; 
 
         #region Код, автоматически созданный конструктором компонентов
 
@@ -37,17 +37,19 @@
         {
             components = new Container();
             this.TaskServiceProcessInstaller = new ServiceProcessInstaller();
-            this.MyServiceInstaller = new ServiceInstaller();
+            this.TaskServiceInstaller = new ServiceInstaller();
 
-            this.TaskServiceProcessInstaller.Account = ServiceAccount.LocalService;
+            this.TaskServiceProcessInstaller.Account = ServiceAccount.LocalSystem;
             this.TaskServiceProcessInstaller.Password = null;
             this.TaskServiceProcessInstaller.Username = null;
 
-            this.MyServiceInstaller.ServiceName = "MyService1123";
+            this.TaskServiceInstaller.ServiceName = "TaskerService";
 
-            this.Installers.AddRange(new Installer[] {
-            this.TaskServiceProcessInstaller,
-            this.MyServiceInstaller});
+            this.Installers.AddRange(new Installer[] 
+            {
+                this.TaskServiceProcessInstaller,
+                this.TaskServiceInstaller
+            });
         }
 
         #endregion

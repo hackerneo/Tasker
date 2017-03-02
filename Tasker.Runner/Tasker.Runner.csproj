@@ -90,11 +90,11 @@
     <Compile Include="TaskService.Designer.cs">
       <DependentUpon>TaskService.cs</DependentUpon>
     </Compile>
-    <Compile Include="TaskServiceInstaller.cs">
+    <Compile Include="TaskerServiceInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TaskServiceInstaller.Designer.cs">
-      <DependentUpon>TaskServiceInstaller.cs</DependentUpon>
+    <Compile Include="TaskerServiceInstaller.Designer.cs">
+      <DependentUpon>TaskerServiceInstaller.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

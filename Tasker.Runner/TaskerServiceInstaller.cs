@@ -5,16 +5,16 @@
     using System.Configuration.Install;
 
     [RunInstaller(true)]
-    public partial class TaskServiceInstaller : Installer
+    public partial class TaskerServiceInstaller : Installer
     {
-        public TaskServiceInstaller()
+        public TaskerServiceInstaller()
         {
             InitializeComponent();
         }
 
         private void ApplyParameters(bool install)
         {
-            MyServiceInstaller.ApplyParameters(Context, install);
+            TaskServiceInstaller.ApplyParameters(Context, install);
             TaskServiceProcessInstaller.ApplyParameters(Context, install);
         }
 

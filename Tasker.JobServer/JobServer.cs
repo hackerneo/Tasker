@@ -9,31 +9,43 @@
 
     public class JobServer : IJobServer
     {
-        private IWindsorContainer Container { get; set; }
+        private IWindsorContainer Container { get; }
 
         private Thread executingThread { get; set; }
+
+        private bool isJobServerStarted { get; set; }
 
         public JobServer(IWindsorContainer container)
         {
             this.Container = container;
+            this.isJobServerStarted = false;
         }
 
         public void StartExecuting()
         {
-            this.executingThread = new Thread(Start);
-            this.executingThread.Start();
+            if (!this.isJobServerStarted)
+            {
+                this.executingThread = new Thread(JobServerExecute);
+                this.executingThread.Start();
+                this.isJobServerStarted = true;
+            }
         }
 
         public void StopExecuting()
         {
-            this.executingThread.Abort();
-            this.executingThread.Join(500);
+            if (this.isJobServerStarted)
+            {
+                this.executingThread.Abort();
+                this.executingThread.Join(500);
+                this.isJobServerStarted = false;
+            }
         }
 
-        private void Start()
+        private void JobServerExecute()
         {
             var jobStor = this.Container.Resolve<IJobStorage>();
             var logger = this.Container.Resolve<ILogger>();
+
             while (true)
             {
                 try
