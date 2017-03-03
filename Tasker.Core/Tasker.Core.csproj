@@ -66,8 +66,10 @@
     <Compile Include="Interfaces\IModule.cs" />
     <Compile Include="Interfaces\IModuleLoader.cs" />
     <Compile Include="Interfaces\IModuleProvider.cs" />
+    <Compile Include="Job.cs" />
     <Compile Include="JobParameters.cs" />
     <Compile Include="ConsoleLogger.cs" />
+    <Compile Include="JobStatus.cs" />
     <Compile Include="ModuleLoader.cs" />
     <Compile Include="ModuleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

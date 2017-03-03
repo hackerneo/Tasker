@@ -60,8 +60,6 @@
   <ItemGroup>
     <Compile Include="IJobStorage.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="Job.cs" />
-    <Compile Include="JobStatus.cs" />
     <Compile Include="JobStorage.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="MSSQLRepository.cs" />

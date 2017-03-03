@@ -1,4 +1,4 @@
-﻿namespace Tasker.JobStorage
+﻿namespace Tasker.Core
 {
     using System;
     using System.ComponentModel.DataAnnotations.Schema;

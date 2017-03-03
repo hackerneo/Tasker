@@ -1,4 +1,4 @@
-namespace Tasker.JobStorage
+namespace Tasker.Core
 {
     public enum JobStatus
     {

@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using Castle.Windsor;
+    using Core;
 
     public class JobStorage : IJobStorage
     {
